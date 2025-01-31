@@ -2,20 +2,36 @@
 namespace Mageplaza\HelloWorld\Block\Adminhtml\Post;
 
 use Magento\Backend\Block\Widget\Grid\Extended;
-use Magento\Backend\Block\Widget\Grid\MassActionInterface;
-use Magento\Backend\Block\Widget\Grid\Row\ActionsInterface;
 use Mageplaza\HelloWorld\Model\Post\PostFactory;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Backend\Helper\Data;
+use Magento\Framework\Registry;
+use Magento\Backend\Model\Session;
 
+/**
+ * Class Grid
+ * @package Mageplaza\HelloWorld\Block\Adminhtml\Post
+ */
 class Grid extends Extended
 {
     protected $_postFactory;
 
+    /**
+     * Grid constructor.
+     *
+     * @param Context $context
+     * @param Data $backendHelper
+     * @param PostFactory $postFactory
+     * @param Registry $registry
+     * @param Session $backendSession
+     * @param array $data
+     */
     public function __construct(
         Context $context,
         Data $backendHelper,
         PostFactory $postFactory,
+        Registry $registry,
+        Session $backendSession,
         array $data = []
     ) {
         $this->_postFactory = $postFactory;
@@ -29,6 +45,7 @@ class Grid extends Extended
      */
     protected function _prepareCollection()
     {
+        // Create a collection for your posts
         $collection = $this->_postFactory->create()->getCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
@@ -41,6 +58,7 @@ class Grid extends Extended
      */
     protected function _prepareColumns()
     {
+        // Add the "Post ID" column
         $this->addColumn(
             'post_id',
             [
@@ -50,6 +68,7 @@ class Grid extends Extended
             ]
         );
 
+        // Add the "Title" column
         $this->addColumn(
             'title',
             [
@@ -58,6 +77,48 @@ class Grid extends Extended
             ]
         );
 
+        // Add the "Actions" column (if needed for actions like edit, delete)
+        $this->addColumn(
+            'actions',
+            [
+                'header'    => __('Actions'),
+                'type'      => 'action',
+                'getter'    => 'getId',
+                'actions'   => [
+                    [
+                        'caption' => __('Edit'),
+                        'url'     => [
+                            'base' => '*/*/edit',
+                            'params' => ['_current' => true]
+                        ],
+                        'field'    => 'post_id'
+                    ],
+                    [
+                        'caption' => __('Delete'),
+                        'url'     => [
+                            'base' => '*/*/delete',
+                            'params' => ['_current' => true]
+                        ],
+                        'field'    => 'post_id'
+                    ]
+                ],
+                'filter'    => false,
+                'sortable'  => false,
+                'index'     => 'actions',
+                'is_system' => true,
+            ]
+        );
+
         return parent::_prepareColumns();
+    }
+
+    /**
+     * Get the grid URL for actions
+     *
+     * @return string
+     */
+    public function getGridUrl()
+    {
+        return $this->getUrl('*/*/grid', ['_current' => true]);
     }
 }
