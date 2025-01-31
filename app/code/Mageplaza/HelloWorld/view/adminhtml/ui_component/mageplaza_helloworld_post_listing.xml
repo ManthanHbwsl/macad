@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <dataSource name="mageplaza_helloworld_post_data_source">
+        <argument name="dataProvider" xsi:type="object">Mageplaza\HelloWorld\Model\Post\DataProvider</argument>
+        <argument name="sortOrder" xsi:type="string">id</argument>
+        <argument name="defaultDir" xsi:type="string">ASC</argument>
+    </dataSource>
+    <columns name="mageplaza_helloworld_post_columns">
+        <column name="post_id">
+            <settings>
+                <header>Post ID</header>
+                <dataType>number</dataType>
+                <index>post_id</index>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <header>Post Name</header>
+                <dataType>text</dataType>
+                <index>name</index>
+            </settings>
+        </column>
+        <column name="created_at">
+            <settings>
+                <header>Created At</header>
+                <dataType>date</dataType>
+                <index>created_at</index>
+            </settings>
+        </column>
+    </columns>
+</listing>

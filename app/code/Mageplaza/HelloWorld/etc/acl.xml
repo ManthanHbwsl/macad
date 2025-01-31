@@ -10,7 +10,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Mageplaza_HelloWorld::helloworld_config" title="Hello World"/>
+                            <resource id="Mageplaza_HelloWorld::helloworld_config" title="Hello World Configuration" />
                         </resource>
                     </resource>
                 </resource>

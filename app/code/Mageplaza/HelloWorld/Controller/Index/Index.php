@@ -42,4 +42,6 @@ class Index extends Action
     {
         return $this->_authorization->isAllowed('Mageplaza_HelloWorld::helloworld');
     }
+
+    const ADMIN_RESOURCE = 'Mageplaza_HelloWorld::post';
 }
