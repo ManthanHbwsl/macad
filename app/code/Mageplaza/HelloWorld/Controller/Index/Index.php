@@ -1,8 +1,8 @@
 <?php
 namespace Mageplaza\HelloWorld\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Mageplaza\HelloWorld\Model\PostFactory; 
 
@@ -34,4 +34,14 @@ class Index extends Action
 
         return $this->_pageFactory->create();
     }
+
+    /** 
+     * Check if the user has permission to access this controller
+     */
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Mageplaza_HelloWorld::helloworld');
+    }
+
+    const ADMIN_RESOURCE = 'Mageplaza_HelloWorld::post';
 }
