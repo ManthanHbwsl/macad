@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout.xsd">
+    <block class="Mageplaza\HelloWorld\Block\Hello" name="hello_world_block" cache_lifetime="3600">
+        <arguments>
+            <argument name="cache_lifetime" xsi:type="number">3600</argument>
+        </arguments>
+    </block>
+</layout>

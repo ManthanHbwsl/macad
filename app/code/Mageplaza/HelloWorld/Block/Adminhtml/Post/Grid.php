@@ -3,7 +3,7 @@ namespace Mageplaza\HelloWorld\Block\Adminhtml\Post;
 
 use Magento\Backend\Block\Widget\Grid\Extended;
 use Mageplaza\HelloWorld\Model\Post\PostFactory;
-use Magento\Framework\View\Element\Template\Context;
+use Magento\Backend\Block\Template\Context; 
 use Magento\Backend\Helper\Data;
 use Magento\Framework\Registry;
 use Magento\Backend\Model\Session;
@@ -27,7 +27,7 @@ class Grid extends Extended
      * @param array $data
      */
     public function __construct(
-        Context $context,
+        Context $context, // Corrected context class
         Data $backendHelper,
         PostFactory $postFactory,
         Registry $registry,
