@@ -1,0 +1,8 @@
+type Query {
+    customData: CustomDataType @resolver(class: "Mageplaza\\HelloWorld\\Model\\Resolver\\CustomData") @doc(description: "Retrieve custom data")
+}
+
+type CustomDataType {
+    id: Int!
+    name: String!
+}

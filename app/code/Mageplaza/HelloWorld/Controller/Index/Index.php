@@ -4,7 +4,7 @@ namespace Mageplaza\HelloWorld\Controller\Index;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
-use Mageplaza\HelloWorld\Model\PostFactory; 
+use Mageplaza\HelloWorld\Model\PostFactory;
 
 class Index extends Action
 {
@@ -14,15 +14,16 @@ class Index extends Action
     public function __construct(
         Context $context,
         PageFactory $pageFactory,
-        PostFactory $postFactory 
+        PostFactory $postFactory
     ) {
         $this->_pageFactory = $pageFactory;
-        $this->_postFactory = $postFactory; 
+        $this->_postFactory = $postFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
+        // Fetching posts data
         $post = $this->_postFactory->create();
         $collection = $post->getCollection();
 
@@ -32,10 +33,17 @@ class Index extends Action
             echo "</pre>";
         }
 
+        // Set custom page title
+        $this->_view->loadLayout();
+        $this->_view->getLayout()->getBlock('page.main.title')->setPageTitle('DemoWidget');
+        
+        // Render the page with the widget template
+        $this->_view->renderLayout();
+
         return $this->_pageFactory->create();
     }
 
-    /** 
+    /**
      * Check if the user has permission to access this controller
      */
     protected function _isAllowed()
